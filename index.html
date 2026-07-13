@@ -44,8 +44,8 @@
   }
   .logo .marca{width:30px;height:30px;border-radius:9px;background:var(--verde-hondo);
     display:grid;place-items:center;color:#eafff4;font-weight:800}
-  .barra h1{font-size:15px;margin:0;font-weight:700}
-  .barra .sub{font-size:12px;color:var(--tinta-suave);margin-left:2px}
+  .barra h1{font-size:15px;margin:0;font-weight:700;text-align:center}
+  .barra .sub{font-size:12px;color:var(--tinta-suave);display:block;text-align:center}
   .barra .espacio{flex:1}
   .btn{
     border:0;cursor:pointer;font:inherit;font-weight:600;font-size:13px;
@@ -96,6 +96,14 @@
   }
   .contador{font-size:11px;color:var(--tinta-suave);margin-top:5px}
   .contador.alerta{color:#b4471f;font-weight:600}
+  .logos-panel .fila-logo{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+  .logos-panel .et-logo{font-size:12px;font-weight:600;width:72px;flex:0 0 auto}
+  .logos-panel input[type=file]{flex:1;min-width:0;font-size:11.5px;padding:6px 8px;
+    border:1px dashed var(--linea);border-radius:9px;background:#fff}
+  .logos-panel input[type=file]::file-selector-button{
+    border:0;background:var(--verde-claro);color:var(--verde-hondo);font:inherit;font-weight:600;
+    padding:5px 10px;border-radius:7px;margin-right:8px;cursor:pointer}
+  .btn.mini{padding:6px 10px;font-size:12px;flex:0 0 auto}
 
   /* ---------- Documento (vista previa) ---------- */
   .zona-doc{display:flex;justify-content:center}
@@ -104,15 +112,73 @@
     border:1px solid var(--linea);border-radius:8px;box-shadow:var(--sombra);
     padding:54px 60px;min-height:1000px;
   }
-  .doc-encabezado{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;
-    padding-bottom:18px;border-bottom:3px solid var(--verde-hondo)}
-  .doc-org{display:flex;align-items:center;gap:12px}
-  .doc-org .escudo{width:46px;height:46px;border-radius:11px;background:var(--verde-hondo);
-    display:grid;place-items:center;color:#eafff4;font-weight:800;font-size:20px}
-  .doc-org .nombre{font-size:19px;font-weight:800;letter-spacing:-.01em;line-height:1.1}
-  .doc-org .area{font-size:12.5px;color:var(--tinta-suave);margin-top:2px}
-  .doc-folio{text-align:right;font-size:12px;color:var(--tinta-suave)}
-  .doc-folio b{display:block;font-size:14px;color:var(--verde-hondo);font-weight:800}
+  /* ---- Encabezado estilo membrete ---- */
+  .doc-encabezado{padding-bottom:10px}
+  .fila-logos{display:flex;justify-content:space-between;align-items:center;gap:24px}
+
+  /* Logo izquierdo: emblema circular + nombre de la marca */
+  .logo-marca{display:flex;align-items:center;gap:14px;min-width:0}
+  .logo-marca .escudo{
+    width:64px;height:64px;flex:0 0 auto;border-radius:50%;
+    border:2.5px solid var(--verde-hondo);background:#fff;
+    display:grid;place-items:center;color:var(--verde-hondo);
+    font-weight:800;font-size:26px;font-family:Georgia,"Times New Roman",serif;
+  }
+  .logo-marca .escudo.con-img{
+    border:0;background:transparent;border-radius:0;
+    width:auto;max-width:160px;height:auto;
+  }
+  .logo-marca .escudo.con-img img{
+    height:64px;width:auto;max-width:160px;object-fit:contain;display:block;
+  }
+  .logo-marca .textos{line-height:1.05}
+  .logo-marca .nombre-marca{
+    font-family:Georgia,"Times New Roman",serif;font-size:24px;font-weight:700;
+    color:var(--verde-hondo);letter-spacing:.02em;
+  }
+  .logo-marca .sub-marca{
+    font-size:11.5px;font-weight:600;letter-spacing:.34em;text-transform:uppercase;
+    color:var(--tinta-suave);margin-top:5px;
+  }
+  .logo-marca .lema-marca{
+    display:flex;align-items:center;gap:8px;margin-top:6px;
+    font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--tinta-suave);
+  }
+  .logo-marca .lema-marca::before,.logo-marca .lema-marca::after{
+    content:"";height:1px;width:22px;background:var(--tinta-suave);opacity:.6;
+  }
+
+  /* Sello derecho: insignia rectangular en dos bloques */
+  .sello{display:flex;align-items:stretch;border-radius:8px;overflow:hidden;flex:0 0 auto}
+  .sello.con-img{border-radius:0;overflow:visible}
+  .sello.con-img .icono,.sello.con-img .texto{display:none}
+  .sello .img-logo{display:none}
+  .sello.con-img .img-logo{display:block;height:64px;width:auto;max-width:240px;object-fit:contain}
+  .sello .icono{
+    background:var(--verde-hondo);display:grid;place-items:center;
+    width:64px;border-right:1.5px solid rgba(255,255,255,.6);
+  }
+  .sello .icono .circ{
+    width:40px;height:40px;border-radius:50%;border:2px solid #eafff4;
+    display:grid;place-items:center;color:#eafff4;font-weight:800;font-size:18px;
+  }
+  .sello .texto{background:var(--verde-hondo);color:#eafff4;padding:10px 16px;line-height:1.15}
+  .sello .texto .l1{font-size:15px;font-weight:800;letter-spacing:.03em;text-transform:uppercase}
+  .sello .texto .l2{font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+    opacity:.85;margin-top:4px}
+
+  /* Título central en dos líneas */
+  .titulos-centro{text-align:center;margin-top:30px}
+  .titulos-centro .linea1{font-size:19px;font-weight:800;letter-spacing:.02em;
+    text-transform:uppercase;color:var(--tinta)}
+  .titulos-centro .linea2{font-size:15.5px;font-weight:600;letter-spacing:.03em;
+    text-transform:uppercase;color:#3a4741;margin-top:6px}
+
+  /* Folio alineado a la derecha */
+  .doc-folio{text-align:right;font-size:14px;color:var(--tinta);margin-top:22px}
+  .doc-folio b{font-size:15px;color:var(--tinta);font-weight:800}
+  .doc-folio .fecha{display:block;font-size:11.5px;color:var(--tinta-suave);margin-top:3px}
 
   .doc-titulo{font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
     color:var(--verde-hondo);margin:30px 0 4px}
@@ -192,6 +258,43 @@
 
     <div class="fila">
       <div class="campo">
+        <label>Subtítulo del logo <span class="hint">(izquierda)</span></label>
+        <input id="fMarcaSub" value="Recursos Humanos">
+      </div>
+      <div class="campo">
+        <label>Etiqueta bajo el logo</label>
+        <input id="fLema" value="Comunicado">
+      </div>
+    </div>
+
+    <div class="fila">
+      <div class="campo">
+        <label>Sello derecho — línea 1</label>
+        <input id="fSello1" value="Grupo Quokka">
+      </div>
+      <div class="campo">
+        <label>Sello derecho — línea 2</label>
+        <input id="fSello2" value="Trabajo que une">
+      </div>
+    </div>
+
+    <div class="campo logos-panel">
+      <label>Logotipos <span class="hint">(PNG, JPG o SVG; se guardan en este navegador)</span></label>
+      <div class="fila-logo">
+        <span class="et-logo">Izquierdo</span>
+        <input type="file" id="fLogoIzq" accept="image/*">
+        <button type="button" class="btn ghost mini" id="btnQuitarIzq">Quitar</button>
+      </div>
+      <div class="fila-logo">
+        <span class="et-logo">Derecho</span>
+        <input type="file" id="fLogoDer" accept="image/*">
+        <button type="button" class="btn ghost mini" id="btnQuitarDer">Quitar</button>
+      </div>
+      <div class="contador">Si no subes imagen, se usa el emblema con la inicial y el sello de texto. De preferencia PNG con fondo transparente.</div>
+    </div>
+
+    <div class="fila">
+      <div class="campo">
         <label>Folio</label>
         <input id="fFolio" value="RH-PP-2026-001">
       </div>
@@ -224,8 +327,20 @@ Cualquier duda, escríbenos por Microsoft Teams.</textarea>
 
     <div class="qr-panel">
       <p class="titulo-panel">Código QR</p>
-      <div class="destacado">
-        <b>Este QR NO usa ningún enlace.</b> Guarda el texto de abajo <i>dentro</i> del propio código. Al escanearlo, el celular muestra ese texto tal cual — no abre ninguna página web.
+      <div class="destacado" id="notaQR"></div>
+
+      <div class="campo">
+        <label>¿Qué hace el QR al escanearlo?</label>
+        <select id="fQRMode">
+          <option value="texto" selected>Mostrar el texto directamente (sin internet)</option>
+          <option value="url">Abrir una página web (enlace)</option>
+        </select>
+      </div>
+
+      <div class="campo" id="campoUrl" style="display:none">
+        <label>Dirección (URL) a la que apunta el QR</label>
+        <input id="fQRUrl" placeholder="https://tu-sitio.com/comunicado" value="">
+        <div class="contador">Sube ahí la página que descargas con el botón de abajo.</div>
       </div>
 
       <div class="campo">
@@ -239,9 +354,14 @@ Cualquier duda, escríbenos por Microsoft Teams.</textarea>
       </div>
 
       <div class="campo">
-        <label>Contenido del QR <span class="hint">(esto es lo que se muestra al escanear)</span></label>
+        <label id="lblQR">Contenido del QR <span class="hint">(esto es lo que se muestra al escanear)</span></label>
         <textarea id="fQR" rows="6"></textarea>
         <div class="contador" id="contador"></div>
+      </div>
+
+      <div class="campo" id="campoPagina" style="display:none">
+        <button class="btn ghost" id="btnPagina" style="width:100%">Descargar página del QR (HTML)</button>
+        <div class="contador">Súbela a tu hosting y usa esa dirección en el campo URL de arriba.</div>
       </div>
 
       <div class="campo">
@@ -261,16 +381,33 @@ Cualquier duda, escríbenos por Microsoft Teams.</textarea>
     <div class="hoja" id="hoja">
 
       <div class="doc-encabezado">
-        <div class="doc-org">
-          <div class="escudo">Q</div>
-          <div>
-            <div class="nombre" id="vOrg">Grupo Quokka</div>
-            <div class="area" id="vArea">Dirección de Recursos Humanos</div>
+        <div class="fila-logos">
+          <div class="logo-marca">
+            <div class="escudo" id="vInicial">Q</div>
+            <div class="textos">
+              <div class="nombre-marca" id="vMarca">Grupo Quokka</div>
+              <div class="sub-marca" id="vMarcaSub">Recursos Humanos</div>
+              <div class="lema-marca" id="vLema">Comunicado</div>
+            </div>
+          </div>
+          <div class="sello" id="selloBox">
+            <img class="img-logo" id="vSelloImg" alt="Logo derecho">
+            <div class="icono"><div class="circ" id="vSelloInicial">Q</div></div>
+            <div class="texto">
+              <div class="l1" id="vSello1">Grupo Quokka</div>
+              <div class="l2" id="vSello2">Trabajo que une</div>
+            </div>
           </div>
         </div>
+
+        <div class="titulos-centro">
+          <div class="linea1" id="vOrg">Grupo Quokka</div>
+          <div class="linea2" id="vArea">Dirección de Recursos Humanos</div>
+        </div>
+
         <div class="doc-folio">
           FOLIO No. <b id="vFolio">RH-PP-2026-001</b>
-          <span id="vFecha">13/07/2026</span>
+          <span class="fecha" id="vFecha">13/07/2026</span>
         </div>
       </div>
 
@@ -2692,7 +2829,19 @@ var qrcode = function() {
 
   // ---- Actualiza toda la vista previa ----
   function refrescar(){
-    $("vOrg").textContent      = $("fOrg").value || "\u00A0";
+    var org = $("fOrg").value || "\u00A0";
+    $("vOrg").textContent      = org;
+    $("vMarca").textContent    = org;
+    var esc = $("vInicial");
+    if(!esc.classList.contains("con-img")){
+      esc.textContent = (org.trim().charAt(0) || "Q").toUpperCase();
+    }
+    $("vMarcaSub").textContent = $("fMarcaSub").value || "\u00A0";
+    $("vLema").textContent     = $("fLema").value || "\u00A0";
+    var sello1 = $("fSello1").value || "\u00A0";
+    $("vSello1").textContent   = sello1;
+    $("vSello2").textContent   = $("fSello2").value || "\u00A0";
+    $("vSelloInicial").textContent = (sello1.trim().charAt(0) || "Q").toUpperCase();
     $("vArea").textContent     = $("fArea").value || "\u00A0";
     $("vFolio").textContent    = $("fFolio").value || "\u00A0";
     $("vFecha").textContent    = $("fFecha").value || "\u00A0";
@@ -2706,26 +2855,38 @@ var qrcode = function() {
     $("vBoxFolio").textContent = $("fFolio").value || "\u00A0";
     $("vBoxFecha").textContent = $("fFecha").value || "\u00A0";
 
-    var texto = $("fQR").value;
+    var modo = $("fQRMode").value;
     var nivel = $("fEC").value;
     var holder = $("qrHolder");
     var cont = $("contador");
 
-    // contador de bytes (UTF-8)
-    var bytes = new (window.TextEncoder||function(){this.encode=function(s){return unescape(encodeURIComponent(s))};})().encode ?
-                new TextEncoder().encode(texto).length :
-                unescape(encodeURIComponent(texto)).length;
-    cont.textContent = texto.length + " caracteres · " + bytes + " bytes";
+    // mostrar/ocultar campos según el modo
+    $("campoUrl").style.display    = (modo==="url") ? "" : "none";
+    $("campoPagina").style.display = (modo==="url") ? "" : "none";
+    if(modo==="url"){
+      $("notaQR").innerHTML = "<b>El QR abre una página web.</b> Codifica la dirección (URL) que pongas arriba. La página tienes que subirla tú a tu hosting — usa el botón de abajo para descargarla ya armada.";
+      $("lblQR").innerHTML = "Contenido que se mostrará en la página <span class=\"hint\">(no va dentro del QR, va en la página)</span>";
+    }else{
+      $("notaQR").innerHTML = "<b>Este QR no usa ningún enlace.</b> Guarda el texto de abajo <i>dentro</i> del propio código. Al escanearlo, el celular muestra ese texto tal cual, sin internet.";
+      $("lblQR").innerHTML = "Contenido del QR <span class=\"hint\">(esto es lo que se muestra al escanear)</span>";
+    }
+
+    // lo que realmente se codifica en el QR
+    var codificar = (modo==="url") ? $("fQRUrl").value.trim() : $("fQR").value;
+
+    // contador de bytes (UTF-8) del contenido del QR
+    var bytes = new TextEncoder().encode(codificar).length;
+    cont.textContent = codificar.length + " caracteres · " + bytes + " bytes";
     cont.classList.remove("alerta");
 
-    if(!texto.trim()){
+    if(!codificar.trim()){
       holder.className = "qr-holder vacio";
-      holder.textContent = "Escribe el contenido del QR";
+      holder.textContent = (modo==="url") ? "Escribe la URL de destino" : "Escribe el contenido del QR";
       return;
     }
     try{
       holder.className = "qr-holder";
-      holder.innerHTML = construirQR(texto, nivel);
+      holder.innerHTML = construirQR(codificar, nivel);
     }catch(e){
       holder.className = "qr-holder vacio";
       holder.textContent = "El texto es demasiado largo para este nivel. Baja la corrección a L o acorta el texto.";
@@ -2734,18 +2895,58 @@ var qrcode = function() {
     }
   }
 
+  // ---- Genera la página HTML de destino (para subir al hosting) ----
+  function paginaDestino(){
+    var esc = function(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); };
+    var org   = esc($("fOrg").value || "Grupo Quokka");
+    var area  = esc($("fArea").value || "");
+    var label = esc($("fQRLabel").value || "Información");
+    var cont  = esc($("fQR").value || "");
+    var folio = esc($("fFolio").value || "");
+    var fecha = esc($("fFecha").value || "");
+    return '<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">' +
+      '<meta name="viewport" content="width=device-width, initial-scale=1.0">' +
+      '<title>' + org + ' — ' + label + '</title><style>' +
+      'body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;' +
+      'background:#f2f6f3;color:#1d2a25;padding:24px 16px;-webkit-font-smoothing:antialiased}' +
+      '.card{max-width:560px;margin:0 auto;background:#fff;border:1px solid #dfe6e2;border-radius:16px;' +
+      'box-shadow:0 8px 28px rgba(18,80,59,.1);overflow:hidden}' +
+      '.top{background:#12503b;color:#eafff4;padding:22px 24px;display:flex;align-items:center;gap:12px}' +
+      '.mark{width:42px;height:42px;border-radius:11px;background:rgba(255,255,255,.14);display:grid;' +
+      'place-items:center;font-weight:800;font-size:19px}' +
+      '.top .org{font-size:18px;font-weight:800;line-height:1.15}.top .area{font-size:12.5px;opacity:.85;margin-top:2px}' +
+      '.body{padding:24px}.label{font-size:16px;font-weight:800;color:#12503b;margin:0 0 12px}' +
+      '.contenido{white-space:pre-wrap;line-height:1.7;font-size:15px;color:#26332d}' +
+      '.meta{margin-top:22px;padding-top:14px;border-top:1px solid #dfe6e2;font-size:12px;color:#5b6b64}' +
+      '</style></head><body><div class="card">' +
+      '<div class="top"><div class="mark">' + (org.charAt(0)||"Q") + '</div>' +
+      '<div><div class="org">' + org + '</div>' + (area?('<div class="area">'+area+'</div>'):'') + '</div></div>' +
+      '<div class="body"><p class="label">' + label + '</p>' +
+      '<div class="contenido">' + cont + '</div>' +
+      '<div class="meta">' + (folio?('Folio: '+folio+' · '):'') + (fecha?('Fecha: '+fecha):'') + '</div>' +
+      '</div></div></body></html>';
+  }
+
   // ---- Listeners ----
-  ["fOrg","fArea","fFolio","fFecha","fTitulo","fDirigido","fCuerpo","fPie","fBoxHeader","fQRLabel","fQR","fEC"]
+  ["fOrg","fArea","fMarcaSub","fLema","fSello1","fSello2","fFolio","fFecha","fTitulo","fDirigido","fCuerpo","fPie","fBoxHeader","fQRLabel","fQR","fEC","fQRMode","fQRUrl"]
     .forEach(function(id){
       $(id).addEventListener("input", refrescar);
       $(id).addEventListener("change", refrescar);
     });
 
+  // ---- Botón: descargar la página de destino ----
+  $("btnPagina").addEventListener("click", function(){
+    var blob = new Blob([paginaDestino()], {type:"text/html;charset=utf-8"});
+    var url = URL.createObjectURL(blob);
+    descargar(url, "pagina-" + ($("fFolio").value||"quokka") + ".html");
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 2000);
+  });
+
   // ---- Botones ----
   $("btnPDF").addEventListener("click", function(){ window.print(); });
 
   $("btnQR").addEventListener("click", function(){
-    var texto = $("fQR").value.trim();
+    var texto = ($("fQRMode").value==="url") ? $("fQRUrl").value.trim() : $("fQR").value.trim();
     if(!texto){ alert("El contenido del QR está vacío."); return; }
     try{
       var url = qrComoPNG(texto, $("fEC").value, 12);
@@ -2772,6 +2973,61 @@ var qrcode = function() {
     a.href = dataURL; a.download = nombre;
     document.body.appendChild(a); a.click(); document.body.removeChild(a);
   }
+
+  // ---- Logotipos personalizados (se guardan en este navegador) ----
+  var LS_IZQ = "quokka.logoIzq", LS_DER = "quokka.logoDer";
+
+  function aplicarLogoIzq(src){
+    var esc = $("vInicial");
+    esc.classList.add("con-img");
+    esc.innerHTML = "";
+    var img = document.createElement("img");
+    img.alt = "Logo"; img.src = src;
+    esc.appendChild(img);
+  }
+  function quitarLogoIzq(){
+    var esc = $("vInicial");
+    esc.classList.remove("con-img");
+    esc.innerHTML = "";
+    try{ localStorage.removeItem(LS_IZQ); }catch(e){}
+    $("fLogoIzq").value = "";
+    refrescar(); // repone la inicial
+  }
+  function aplicarLogoDer(src){
+    $("vSelloImg").src = src;
+    $("selloBox").classList.add("con-img");
+  }
+  function quitarLogoDer(){
+    $("selloBox").classList.remove("con-img");
+    $("vSelloImg").removeAttribute("src");
+    try{ localStorage.removeItem(LS_DER); }catch(e){}
+    $("fLogoDer").value = "";
+  }
+
+  function conectarCargaLogo(inputId, clave, aplicar){
+    $(inputId).addEventListener("change", function(){
+      var f = this.files && this.files[0];
+      if(!f) return;
+      if(!/^image\//.test(f.type)){ alert("El archivo debe ser una imagen (PNG, JPG o SVG)."); this.value=""; return; }
+      var lector = new FileReader();
+      lector.onload = function(){
+        aplicar(lector.result);
+        try{ localStorage.setItem(clave, lector.result); }
+        catch(e){ /* imagen muy grande para guardarse; se usa solo en esta sesión */ }
+      };
+      lector.readAsDataURL(f);
+    });
+  }
+  conectarCargaLogo("fLogoIzq", LS_IZQ, aplicarLogoIzq);
+  conectarCargaLogo("fLogoDer", LS_DER, aplicarLogoDer);
+  $("btnQuitarIzq").addEventListener("click", quitarLogoIzq);
+  $("btnQuitarDer").addEventListener("click", quitarLogoDer);
+
+  // Restaurar logos guardados
+  try{
+    var gIzq = localStorage.getItem(LS_IZQ); if(gIzq) aplicarLogoIzq(gIzq);
+    var gDer = localStorage.getItem(LS_DER); if(gDer) aplicarLogoDer(gDer);
+  }catch(e){}
 
   refrescar();
 })();
